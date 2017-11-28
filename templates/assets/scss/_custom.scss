@@ -1,0 +1,40 @@
+// SOCIAL MENU
+.social-right {
+    ul {
+        display: flex;
+        flex-direction: row; 
+    }
+}
+
+// BASIC MENU
+.basic-nav {
+    .drop {
+        z-index: 999;
+        }
+}
+
+// STICKY OFF CANVAS MENU
+.off-canvas .off-canvas-toggle {
+    position: fixed;
+}
+// BREADCRUMBS
+.breadcrumb {
+    margin-top: -.5em;
+}
+
+// IMG THUMB
+.thumb {
+    display: flex;
+    justify-content: center;
+}
+
+// LOGO
+.logo img {
+    border: 3px solid $transparent;
+    transition: $t-out;
+    &:hover {
+      border: 3px solid $red;
+      transform: scale(0.96);
+    }
+  }
+  

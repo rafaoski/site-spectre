@@ -1,0 +1,32 @@
+{
+  "name": "processwire-starter-profile",
+  "version": "1.0.0",
+  "description": "Simple Starter For Processwire Usage Framework Spectre.css",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "grid",
+    "css",
+    "processwire",
+    "profile",
+    "browser-sync",
+    "spectre-css"
+  ],
+  "author": "Rafał Olszewicz",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "gulp": "latest",
+    "gulp-autoprefixer": "latest",
+    "gulp-clean-css": "^3.7.0",
+    "gulp-csscomb": "^3.0.8",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "latest"
+  },
+  "dependencies": {
+    "font-awesome": "^4.7.0",
+    "spectre.css": "^0.4.6"
+  }
+}
