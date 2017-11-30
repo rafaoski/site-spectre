@@ -8,7 +8,7 @@ function searchForm($class = '') {
 	$action = pages()->get('template=search')->url;
 		return "<!-- search form -->
 			<form class='{$class} search input-group input-inline p-2' action='{$action}' method='get'>
-				<input class='form-input' type='text' name='q' id='search' placeholder='Search' value='' required>
+				<input class='form-input' type='text' name='q' id='search' placeholder='{$l_search}' value='' required>
 				<button type='submit' name='submit' class='hide-md btn btn-primary input-group-btn'>{$l_search}</button>
 			</form>";
 	}
