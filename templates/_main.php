@@ -51,7 +51,7 @@ $templ_url = urls()->templates;
             <div class="navbar-center logo">
                 <a class='p-2' href='<?=$home->url?>'>
                     <img class='responsive' src="<?=$options->logo ? $options->logo->url : $templ_url . 
-                                'assets/img/logo.png'?>" width='200' height='50' alt="logo">
+                                'assets/img/logo.png'?>" style='height: 50px; width: 100%;' alt="logo">
                 </a>
             </div>
 
