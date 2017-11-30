@@ -10,7 +10,7 @@
 npm install  
 bower install  
 
-#### Go to gulpfile.js and change in line 9 -- var URL: "http://site-spectre.dev/" To your local processwire-installation -- like:
+#### Go to gulpfile.js and change in line 9 -- var URL: "http://spectre.dev/" To your local processwire-installation -- like:
 localhost/my-local-folder-processwire-installation/
 
 #### Folder With all SCSS file is inside templates/assets/scss
