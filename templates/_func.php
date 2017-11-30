@@ -395,11 +395,9 @@ $out .= "</div>";
 	
 	$out .= "<ul class='tab category-list ml-2'>";
 // CATEGORIES
-	  $out .= $cat ? "<li class='icon icon-apps m-2'></li>" : '';
-	  $out .= "$cat";
+	  $out .= $cat ? "<li class='icon icon-apps m-2'></li> $cat" : '';
 // AUTHORS
-	  $out .= $auth ? "<li class='icon icon-people m-2'></li>" : '';
-	  $out .= "$auth";
+	  $out .= $auth ? "<li class='icon icon-people m-2'></li> $auth" : '';
 	$out .= "</ul>";
 	
 	$out .= "</div>";
