@@ -6,10 +6,14 @@
     }
 }
 
-// BASIC MENU
+// DROPDOWN MENU
 .basic-nav {
     .drop {
         z-index: 999;
+        }
+// CHANGE TO NOWRAP        
+        .btn-group {
+            flex-wrap: nowrap;
         }
 }
 
