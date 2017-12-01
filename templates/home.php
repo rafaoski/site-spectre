@@ -3,7 +3,7 @@
 <div id='body' pw-append>
 
     <div id='content-images' class='cont-img columns col-gapless'>
-        <?php echo parallaxImage($page->children);?>       
+       <?php echo parallaxImage($page->children("limit=3, images.count>0"));?>
     </div><!-- /#content-images -->
 
 </div><!-- /#body -->
