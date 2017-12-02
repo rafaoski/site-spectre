@@ -32,9 +32,10 @@ function searchForm($class = '') {
 * @param  Page $page
 */
 	function pageEdit($page) {
+		$l_edit = __('Edit');
 		if($page->editable()) {
 			$edit = page()->editUrl;
-			return "<a class='m-2 btn' href='{$edit}'>Edit</a>";
+			return "<a class='m-2 btn' href='{$edit}'>{$l_edit}</a>";
 		}
 	}
 

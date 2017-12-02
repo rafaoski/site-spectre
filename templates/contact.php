@@ -5,6 +5,7 @@
 $l_name = __('Name');
 $l_email = __('Email');
 $l_message = __('Message');
+$l_yourmessage = __('Your Message');
 
 if($input->post->submit) :
 
@@ -19,10 +20,10 @@ $m_message = $sanitizer->text($input->post->message);
 if($m_name && $m_from  && $m_message) {
     $m_subj = __('Mail Subject');
     $html = "<html><body>
-                  <h1>Your Message</h1>
-                  <h3>Name: $m_name</h3>
-                  <h3>Email: $m_from</h3> 
-                  <p><b>Message:</b> $m_message</p>
+                  <h1>$l_yourmessage</h1>
+                  <h3>$l_name: $m_name</h3>
+                  <h3>$l_email: $m_from</h3> 
+                  <p><b>$l_message:</b> $m_message</p>
              </body></html>"; 
 
     $m = wireMail();
@@ -49,7 +50,7 @@ if(page()->check_1) {
     echo '<h1>' . __('Fill in the field correctly') . '</h1>';
 }
 ?>
-<h2><?=__('Your Message')?></h2>
+<h2><?=$l_yourmessage?></h2>
 <h3><?= "$l_name: $m_name"?></h3>
 <h4><?= "$l_email:  $m_from"?></h4>
 <p><?= "$l_message: $m_message"?></p>
