@@ -182,6 +182,93 @@ function pagination($items) {
 			}
 		}
 
+// START MULTI LANGUAGE OPTIONS
+
+/**
+ * HTML ATTRIBUTE
+ * @param string $def_lang
+ */
+function htmlLang($def_lang) {
+	// CHECK IF LANGUAGES EXIST
+	if(count(page()->getLanguages()) == 0) return $def_lang;
+		
+		$home = pages()->get('/');
+		$hrefl = $home->getLanguageValue(page()->language, 'name');
+		if($hrefl == 'home') $hrefl = $def_lang;
+			return $hrefl;  
+		}
+	
+	/**
+	 * LINK ATTRIBUTES  
+	 * @param string $def_lang
+	 */ 
+	function langLink($def_lang) {
+		$home = pages()->get('/');
+		$out = '';
+	// CHECK IF LANGUAGES EXIST
+		if(count(page()->getLanguages()) == 0) return '';
+	
+		foreach(page()->languages() as $language) {
+			 
+			// if this page is not viewable in the language, skip it
+				if(!page()->viewable($language)) continue;
+			// get the http URL for this page in the given language
+				$url = page()->localHttpUrl($language); 
+			// hreflang code for language uses language name from home
+				$hreflang = $home->getLanguageValue($language, 'name');
+			// If you do not set the default language, this prefix will be default instead of 'home'
+				if($hreflang == 'home' || $hreflang == '' ) $hreflang = $def_lang;
+	
+	// output the <link> tag: note that this assumes your language names are the same as required by hreflang. 
+				$out .= "\n\t<link rel='alternate' hreflang='$hreflang' href='$url' />";
+		}
+
+		return $out; 
+	}
+	
+	/**
+	 * BASIC LANG MENU 
+	 * @param string $def_lang
+	 */ 
+	function langMenu($def_lang) {
+	// CHECK IF LANGUAGES EXIST
+	if(count(page()->getLanguages()) == 0) return '';   
+		$home = pages()->get('/');
+		$hrefl = $home->getLanguageValue(page()->language, 'name');
+		$out = '';
+		
+	// SET DEFAULT LANG    
+		if($hrefl == 'home') $hrefl = $def_lang; 
+	
+	// START MENU DROPDOWN
+		$out .= "\n<div class='dropdown lang-switcher'>\n";
+		$out .= "<a href='#' class='btn btn-link dropdown-toggle' tabindex='0'>\n";
+		$out .= "<i class='fa fa-language' aria-hidden='true'></i> ";
+		$out .= strtoupper($hrefl);
+		$out .= "<i class='icon icon-caret'></i>";
+		$out .= "</a>\n";
+	
+	// SUB MENU ITEM
+	$out .= "<ul class='menu'>\n";
+
+	foreach(languages() as $language) {
+	$hreflang = $home->getLanguageValue($language, 'name');
+	$url = page()->localUrl($language);
+	
+	// SET DEFAULT LANG    
+	if($hreflang == 'home') $hreflang = $def_lang; 
+	
+	$out .= "<li> -- <a hreflang='$hreflang' href='$url'>$language->title</a></li>\n";
+	
+	}
+
+	$out .= "</ul><!-- /.menu -->\n";
+	
+	$out .= "</div><!-- /.lang-switcher -->\n\n";
+	
+		return $out;
+	}
+			
 /**
  * @param string $options Add the URL of social profiles, separating them with a comma
  * @param array $soc You can use social profiles in which there is a name from the array
