@@ -5,7 +5,7 @@ $home = pages()->get('/');
 $templ_url = urls()->templates;
 ?>
 <!doctype html>
-<html lang="<?= htmlLang('en') // Default Language en?>">
+<html lang="<?= multLang('en','html-lang') // Default Language en?>">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +17,7 @@ $templ_url = urls()->templates;
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="<?php echo $templ_url?>assets/css/master.min.css">
     <pw-region id="top-region"></pw-region>
-    <?= langLink('en') // Default Language en?>
+    <?= multLang('en','link') // Default Language en?>
 </head>
 <body class='<?=page()->name?>'>
 
@@ -53,7 +53,7 @@ $templ_url = urls()->templates;
 
             <div class="navbar-center logo">
 
-            <?= langMenu('en') // Default Language en;?>
+            <?= multLang('en','lang-menu') // Default Language en;?>
 
                 <a class='p-2' href='<?=$home->url?>'>
                     <img class='responsive' src="<?=$options->logo ? $options->logo->url : $templ_url . 
