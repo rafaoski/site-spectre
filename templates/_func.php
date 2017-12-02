@@ -43,6 +43,7 @@ function searchForm($class = '') {
  * This is here to demonstrate an example of a simple shared function.
  * Usage is completely optional.
  * @param PageArray $items
+ * @param array $page_child Select Parent Page to Show Childrens
  */
 function basicNav(PageArray $items, $page_child = []) {
 // $page_child = ['blog'];
@@ -82,6 +83,7 @@ $out = '';
  * This is here to demonstrate an example of a simple shared function.
  * Usage is completely optional.
  * @param PageArray $items
+ * @param array $page_child Select Parent Page to Show Childrens
  */
 function mobileNav(PageArray $items, $page_child = []) {
     $out = '';
@@ -180,9 +182,9 @@ function pagination($items) {
 		}
 
 /**
- * @param string $options
- * SOCIAL PROFILES ( twitter,facebook,youtube, google-plus, 'rss' ) => USAGE:
- * echo socialProfiles($options->txtarea_1)
+ * @param string $options Add the URL of social profiles, separating them with a comma
+ * @param array $soc You can use social profiles in which there is a name from the array
+ *
  */
 function socialProfiles($options) {
 	
@@ -197,7 +199,7 @@ function socialProfiles($options) {
 	foreach ($profile as $key) {
 	
 		for($i=0; $i<count($soc); $i++) {
-	
+	    
 			if (strpos(strtolower($key), $soc[$i]) !== false) {
 				if($soc[$i] == 'rss') $key = pages()->get("/blog/")->httpUrl.'rss';
 				if($soc[$i] == 'plus') $soc[$i] = 'google-plus';
@@ -325,26 +327,29 @@ function commentsPagination() {
 	
 		 }
 
-// COMMENTS COUNT => IF NOT DISABLE COMMENTS
-// echo countComments($items, $options);
-function countComments($item, $options) {
-	$id = $item->comments->last() ? $item->comments->last()->id : '#';
+/**
+ * @param Page $items Page Children to start the render images
+ * @param bool $check Check if comments on the options page have been turned off
+ */
+function countComments($items, $check) {
+	$id = $items->comments->last() ? $items->comments->last()->id : '#';
 	if($id == '#') return '';
-	if(!$item->check_1 == false || !$options->check_1 == false) return '';
+	if(!$items->check_1 == false || !$check->check_1 == false) return '';
         $out = '';
-            $out = "| <a href='$item->url#Comment$id'>";
+            $out = "| <a href='$items->url#Comment$id'>";
             $out .= "<i class='comments fa fa-comment-o' aria-hidden='true'></i> ";
-            $out .= count($item->comments);
+            $out .= count($items->comments);
             $out .= "</a>";
         return $out;
 }
 
 /**
  * @param Page $items Page Children to start the blog post items
+ * @param bool $check Check if comments on the options page have been turned off
  */
 function blogPosts($items) {
 
-$options = pages()->get('/options/');
+$check = pages()->get('/options/');
 
 	$out = '';
 	foreach ($items as $key) {
@@ -354,7 +359,7 @@ $options = pages()->get('/options/');
 // Look _ready.php line: 9 https://processwire.com/blog/posts/pw-3.0.28/    
 	$summary = $key->summarize('body', 200);
 // Comments
-	$comm = countComments($key, $options);
+	$comm = countComments($key, $check);
 
 // CATEGORIES
 	  $cat = $key->categories->each(
@@ -412,6 +417,8 @@ $out .= "</div>";
 
 /**
  * @param Page $items Page Children to start the blog post items
+ * @param string $heading
+ * @param string $icon
  * USAGE:
  * $cat = pages()->get('/categories/')->children("limit=12");
  * echo listChild( $cat, __('Show Categories'), 'icon icon-apps' );
@@ -465,7 +472,7 @@ function toAny() {
 }
 
 /**
- * @param string $code
+ * @param string $code Google Analytics Tracking Code
  * https://developers.google.com/analytics/devguides/collection/analyticsjs/
  */
 function gAnalitycs($code)
@@ -482,8 +489,8 @@ ga('send', 'pageview');
 }
 
 /**
- * @param string $code
- * https://developers.google.com/analytics/devguides/collection/analyticsjs/
+ * @param bool $trash If true, move the pages to the trash
+ * 
  */
     // TRASH DEMO DATA => USAGE: trashDemoData($trash = true);
     function trashDemoData($trash = false) {
