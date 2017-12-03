@@ -134,6 +134,8 @@ $def_lang = 'en' // SET DEFAULT LANGUAGE;
  // echo gAnalitycs('XAA120');
 ?>
 <!-- <script src="<?php // echo $templ_url?>assets/js/custom.js"></script> -->
+<!-- COOKIE BAR FROM https://cookie-bar.eu/ -->
+<script  type="text/javascript" src="https://cdn.jsdelivr.net/npm/cookie-bar/cookiebar-latest.min.js?showNoConsent=1&hideDetailsBtn=1" defer></script>
 <pw-region id="bottom-region"></pw-region>
 </body>
 </html>
