@@ -196,7 +196,7 @@ function pagination($items) {
 	
 // CHECK IF LANGUAGES EXIST
 	if(count(page()->getLanguages()) == 0 && $options == 'html-lang') return $def_lang;
-
+	if(count(page()->getLanguages()) == 0) return '';
 		foreach(page()->languages() as $language) {
 			 
 			// if this page is not viewable in the language, skip it
