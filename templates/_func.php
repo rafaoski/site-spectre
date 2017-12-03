@@ -182,73 +182,87 @@ function pagination($items) {
 			}
 		}
 
-// START MULTI LANGUAGE OPTIONS
+/**
+ ********* START MULTI LANGUAGE OPTIONS **********
+ * 
+ * LINK ATTRIBUTES  
+ * @param string $def_lang
+ * @param string $options Options to modify default behavior:
+ *  - `html-lang` => Show attribute Lang ( <html lang=''> ).
+ *  - `link` => Show output the <link> tag ( <link rel='' hreflang='' href='' />).
+ *  - `lang-menu` => Show Menu multilanguage ( <div class='dropdown lang-switcher'><ul><li><a>Lang Items</a></li></ul></div> ).
+ */ 
+function multLang($def_lang, $options) {
+	$home = pages()->get('/');
+// RESET SOME VALUES	
+	$out = '';
+	$sub_menu = '';
 
-	/**
-	 * LINK ATTRIBUTES  
-	 * @param string $def_lang
-	 *  @param string $options
-	 */ 
-	function multLang($def_lang, $options) {
-		$home = pages()->get('/');
-		$out = '';
-		$sub_menu = '';
-	
-// CHECK IF LANGUAGES EXIST
+// CHECK IF LANGUAGES EXIST && $options set to 'html-lang'
 	if(count(page()->getLanguages()) == 0 && $options == 'html-lang') return $def_lang;
+// CHECK IF LANGUAGES EXIST
 	if(count(page()->getLanguages()) == 0) return '';
-		foreach(page()->languages() as $language) {
-			 
-			// if this page is not viewable in the language, skip it
-				if(!page()->viewable($language)) continue;
-			// get the http URL for this page in the given language
-				$url = page()->localHttpUrl($language); 
-			// hreflang code for language uses language name from home
-				$hreflang = $home->getLanguageValue($language, 'name');
-			// If you do not set the default language, this prefix will be default instead of 'home'
-				if($hreflang == 'home' || $hreflang == '' ) $hreflang = $def_lang;
 
-			if($options == 'link') {
-	// output the <link> tag: note that this assumes your language names are the same as required by hreflang. 
-				$out .= "\n\t<link rel='alternate' hreflang='$hreflang' href='$url' />";
-			}
+	foreach(page()->languages() as $language) {
+		 
+		// if this page is not viewable in the language, skip it
+			if(!page()->viewable($language)) continue;
+		// get the http URL for this page in the given language
+			$url = page()->localHttpUrl($language); 
+		// hreflang code for language uses language name from home
+			$hreflang = $home->getLanguageValue($language, 'name');
+		// If you do not set the default language, this prefix will be default instead of 'home'
+			if($hreflang == 'home' || $hreflang == '' ) $hreflang = $def_lang;
 
-    // Hreflang
-		if(page()->httpUrl == $url && $options == 'html-lang') {
-				$out .= $hreflang;
+		if($options == 'link') {
+// output the <link> tag: note that this assumes your language names are the same as required by hreflang. 
+			$out .= "<link rel='alternate' hreflang='$hreflang' href='$url'/>\r\t";
 		}
-		
-// DEFAULT LANG			
-if(page()->httpUrl == $url && $options == 'lang-menu') {
-	$href_l = $hreflang;
-}
+
+// Show attribute Lang ( <html lang=''> )
+	if(page()->httpUrl == $url && $options == 'html-lang') {
+			$out .= $hreflang;
+	}
+
+// START MENU DROPDOWN --------------- /
+
+// -- DEFAULT LANG			
+	if(page()->httpUrl == $url && $options == 'lang-menu') {
+		$href_l = $hreflang;
+	}
+
 // SUB MENU
-if($options == 'lang-menu') {
-	$sub_menu .= "<li> -- <a hreflang='$hreflang' href='$url'>$language->title</a></li>\n";
-}
+	if($options == 'lang-menu') {
+		$sub_menu .= "<li><a hreflang='$hreflang' href='$url'>";
+		$sub_menu .= "<i class='icon icon-flag'></i> $language->title</a></li>\n";
+	}
 
-}
-if($options == 'lang-menu') {		
-	// START MENU DROPDOWN
-	$out .= "\n<div class='dropdown lang-switcher'>\n";
-	$out .= "<a href='#' class='btn btn-link dropdown-toggle' tabindex='0'>\n";
-	$out .= "<i class='fa fa-language' aria-hidden='true'></i> ";
-	$out .= strtoupper($href_l);
-	$out .= "<i class='icon icon-caret'></i>";
-	$out .= "</a>\n";
+}	// END FOREACH LOOP
 
-	// SUB MENU ITEM
-	$out .= "<ul class='menu'>\n";
-	$out .= $sub_menu;
-	$out .= "</ul><!-- /.menu -->\n";
+// ITEMS MENU DROPDOWN
+	if($options == 'lang-menu') {
 
-	$out .= "</div><!-- /.lang-switcher -->\n\n";
-}
+		$out .= "\n<div class='dropdown lang-switcher'>\n";
+// Menu of the selected Language 
+		$out .= "<a href='#' class='btn btn-lg btn-link dropdown-toggle' tabindex='0'>\n";
+			$out .= "<i class='fa fa-language' aria-hidden='true'></i> ";
+			$out .= strtoupper($href_l);
+			$out .= "<i class='icon icon-caret'></i>";
+		$out .= "</a>\n";
+// SUB MENU ITEM
+		$out .= "<ul class='menu'>\n";
+		  $out .= $sub_menu;
+		$out .= "</ul><!-- /.menu -->\n";
+
+		$out .= "</div><!-- /.lang-switcher -->\n\n";
+	}
+
+// END MENU DROPDOWN --------------- /
 
 return $out;
 
 }
-			
+
 /**
  * @param string $options Add the URL of social profiles, separating them with a comma
  * @param array $soc You can use social profiles in which there is a name from the array

@@ -1,11 +1,11 @@
 <?php namespace Processwire;
-// TRASH DEMO DATA ( Uncomment below to move the demo content to the trash )
-// trashDemoData($trash = true); 
+// trashDemoData($trash = true); // TRASH DEMO DATA ( Uncomment below to move the demo content to the trash ); 
 $home = pages()->get('/');
 $templ_url = urls()->templates;
+$def_lang = 'en' // SET DEFAULT LANGUAGE;
 ?>
 <!doctype html>
-<html lang="<?= multLang('en','html-lang') // Default Language en?>">
+<html lang="<?= multLang($def_lang,'html-lang') // Default Language en | Show attribute Lang ?>">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +17,7 @@ $templ_url = urls()->templates;
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="<?php echo $templ_url?>assets/css/master.min.css">
     <pw-region id="top-region"></pw-region>
-    <?= multLang('en','link') // Default Language en?>
+    <?= multLang($def_lang,'link') // Default Language en | Show output the <link> tag?>
 </head>
 <body class='<?=page()->name?>'>
 
@@ -53,7 +53,7 @@ $templ_url = urls()->templates;
 
             <div class="navbar-center logo">
 
-            <?= multLang('en','lang-menu') // Default Language en;?>
+            <?= multLang($def_lang,'lang-menu') // Default Language en | Show Menu multilanguage?>
 
                 <a class='p-2' href='<?=$home->url?>'>
                     <img class='responsive' src="<?=$options->logo ? $options->logo->url : $templ_url . 
