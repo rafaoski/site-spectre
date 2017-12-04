@@ -5,7 +5,7 @@
     <div id='content-images' class='cont-img columns col-gapless'>
        <?php echo parallaxImage($page->children("limit=3, images.count>0"));?>
     </div><!-- /#content-images -->
-
+<br>
 <?php $items = $pages->get('/blog/')->children("limit=6,images.count>0, sort=-date"); ?>
     <h3 class='mt-2 text-uppercase'>
         <a href="<?=$items[0]->parent->url?>">
