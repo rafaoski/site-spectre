@@ -354,6 +354,67 @@ function parallaxImage($items) {
 	return $out;
 }
 
+/**
+ * @param Page $items Page Children to start the render images
+ * @param string $col Size of the item column
+ */
+function basicCard($items, $col = 'col-6 col-sm-12') {
+	$more = __('More');
+	
+	$out = "<div class='columns'>";
+	
+foreach ($items as $item) {
+	// Look _ready.php line: 9 https://processwire.com/blog/posts/pw-3.0.28/    
+	$excerpt = $item->summarize('body', 150);
+	
+	$out .= "<div class='column $col p-2'>
+	
+		<div class='card'>
+	
+			<div class='card-header'>
+				<div class='card-title h5'>
+					<a href='{$item->url}'>    
+						{$item->title}
+						<i class='fa fa-free-code-camp' aria-hidden='true'></i>
+					</a>    
+				</div>
+			</div>
+	
+			<div class='card-body'>
+				 <p>{$excerpt}</p>
+			</div>";
+	
+	  if(count($item->images)) {
+	$out .="<div class='card-image centered circle'>
+	<a href='{$item->url}'>
+		<div class='parallax m-1'>
+		<div class='parallax-top-left'></div>
+		<div class='parallax-top-right'></div>
+		<div class='parallax-bottom-left'></div>
+		<div class='parallax-bottom-right'></div>
+		<div class='parallax-content circle'>
+		<div class='parallax-front'></div>
+		<div class='parallax-back text-center'>
+			<img class='img-responsive circle' src='{$item->images->first->url}' alt='{$item->name}'>
+		</div> 
+		</div>
+		</div>
+	</a>           
+			</div>";
+	  }
+	$out .="<div class='card-footer'>
+				<a href='{$item->url}' class='btn btn-primary'>{$more}</a>
+			</div>";
+	
+	$out .="</div><!-- /.card -->
+	</div><!-- /.column -->";
+	}
+	
+	$out .="</div><!-- /.columns -->";
+	
+		return $out;
+	}
+
 // COMMENTS WITH PAGINATION => USAGE => echo commentsPagination();
 function commentsPagination() {
 	
