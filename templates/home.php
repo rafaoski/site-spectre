@@ -8,7 +8,7 @@
 
 <?php $items = $pages->get('/blog/')->children("limit=6,images.count>0, sort=-date"); ?>
     <h3 class='mt-2 text-uppercase'>
-        <a href="<?=$child[0]->parent->url?>">
+        <a href="<?=$items[0]->parent->url?>">
             <i class="fa fa-free-code-camp" aria-hidden="true"></i>
                 <?= __('Show Latest Posts');?>
         </a>
