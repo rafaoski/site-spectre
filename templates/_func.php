@@ -388,7 +388,7 @@ if(count($item->images)) {
 	$width = $medium->width;
 	$height = $medium->height;
 	$url = $medium->url;
-	$alt = $medium->name;
+	$alt = $item->name;
 	$out .="<div class='card-image centered circle'>
 	<a href='{$item->url}'>
 		<div class='parallax m-1'>
@@ -450,7 +450,7 @@ if(count($item->images)) {
 	$width = $medium->width;
 	$height = $medium->height;
 	$url = $medium->url;
-	$alt = $medium->name;
+	$alt = $item->name;
 $out .= "<div class='card-image'>
 			<a href='{$item->url}'> 
 				<div class='parallax m-1'>
