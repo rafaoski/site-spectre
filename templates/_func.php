@@ -360,9 +360,7 @@ function parallaxImage($items) {
  */
 function basicCard($items, $col = 'col-6 col-sm-12') {
 	$more = __('More');
-	
 	$out = "<div class='columns'>";
-	
 foreach ($items as $item) {
 	// Look _ready.php line: 9 https://processwire.com/blog/posts/pw-3.0.28/    
 	$excerpt = $item->summarize('body', 150);
@@ -384,7 +382,13 @@ foreach ($items as $item) {
 				 <p>{$excerpt}</p>
 			</div>";
 	
-	  if(count($item->images)) {
+if(count($item->images)) {
+	// $medium = $item->images->width(420);
+	$medium = $item->images->first->width(420);
+	$width = $medium->width;
+	$height = $medium->height;
+	$url = $medium->url;
+	$alt = $medium->name;
 	$out .="<div class='card-image centered circle'>
 	<a href='{$item->url}'>
 		<div class='parallax m-1'>
@@ -395,7 +399,7 @@ foreach ($items as $item) {
 		<div class='parallax-content circle'>
 		<div class='parallax-front'></div>
 		<div class='parallax-back text-center'>
-			<img class='img-responsive circle' src='{$item->images->first->url}' alt='{$item->name}'>
+			<img class='img-responsive circle' src='{$url}' width='{$width}' height='{$height}' alt='{$alt}'>
 		</div> 
 		</div>
 		</div>
@@ -414,6 +418,61 @@ foreach ($items as $item) {
 	
 		return $out;
 	}
+
+/**
+ * @param Page $items Page Children to start the render images
+ * @param string $col Size of the item column
+ */	
+	function simpleCard($items, $col = 'col-6 col-sm-12') {
+		$out = '';
+		foreach ($items as $item) {
+		// Look _ready.php line: 9 https://processwire.com/blog/posts/pw-3.0.28/    
+		$excerpt = $item->summarize('body', 150);
+		
+		$out .= "<div class='column $col'>
+			<div class='card m-1'>";
+		
+		$out .= "<div class='card-header'>
+					<div class='card-title h5'>
+						<a href='{$item->url}'>
+							{$item->title} <i class='fa fa-puzzle-piece' aria-hidden='true'></i>							
+						</a>    
+					</div>
+					<div class='card-subtitle text-gray'>{$item->headline}</div>
+				</div>";
+		
+		$out .= "<div class='card-body'>
+					{$excerpt}
+				</div>";
+		
+if(count($item->images)) {
+	$medium = $item->images->first->width(640);
+	$width = $medium->width;
+	$height = $medium->height;
+	$url = $medium->url;
+	$alt = $medium->name;
+$out .= "<div class='card-image'>
+			<a href='{$item->url}'> 
+				<div class='parallax m-1'>
+				<div class='parallax-top-left'></div>
+				<div class='parallax-top-right'></div>
+				<div class='parallax-bottom-left'></div>
+				<div class='parallax-bottom-right'></div>
+				<div class='parallax-content circle'>
+				<div class='parallax-front'></div>
+				<div class='parallax-back text-center'>
+					<img class='img-responsive' src='{$url}' width='{$width}' height='{$height}' alt='{$alt}'>
+				</div> 
+				</div>
+				</div>
+			</a>    
+		</div>";
+}
+$out .= "</div>
+</div>";
+	}
+	return $out;
+}
 
 // COMMENTS WITH PAGINATION => USAGE => echo commentsPagination();
 function commentsPagination() {

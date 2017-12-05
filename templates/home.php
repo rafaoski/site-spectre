@@ -10,7 +10,7 @@
     <h3 class='mt-2 text-uppercase'>
         <a href="<?=$items[0]->parent->url?>">
             <i class="fa fa-free-code-camp" aria-hidden="true"></i>
-                <?= __('Show Latest Posts');?>
+                <?= __('Show Latest Posts');?> <i class="fa fa-share" aria-hidden="true"></i>
         </a>
     </h3>
 <?= basicCard($items, 'col-6 col-sm-12'); ?>
