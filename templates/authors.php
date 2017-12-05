@@ -7,7 +7,7 @@
 <?php 
 $items = $page->children("limit=22");
 foreach ($items as $author) {
-    $img = count($author->images) ? "<img src='{$author->images->first->url}' alt='{$author->name}'>" : '';
+    $img = count($author->images) ? "<img src='{$author->images->first->width('260')->url}' alt='{$author->name}'>" : '';
 // numPostsAuth() => _ready.php
     $data_badge = $author->numPostsAuth(true);
     $d_initial = $sanitizer->text($author->title,['maxLength' => 2]);

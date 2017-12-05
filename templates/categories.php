@@ -7,7 +7,7 @@
 <?php 
 $items = $page->children("limit=22");
 foreach ($items as $category) {
-$img = count($category->images) ? "<img src='{$category->images->first->url}' alt='{$category->name}'>" : '';
+$img = count($category->images) ? "<img src='{$category->images->first->width('260')->url}' alt='{$category->name}'>" : '';
     $data_badge = $category->numPosts(true);
     $d_initial = $sanitizer->text($category->title,['maxLength' => 2]);
 

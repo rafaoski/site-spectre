@@ -333,23 +333,30 @@ function parallaxImage($items) {
 	$out = '';
 	foreach ($items as $children) {
 		if(count($children->images)) {
-		$out .= "\n<a class='tooltip column col-4 col-sm-12 col-md-6' "; 
-		$out .= "href='{$children->url}' ";
-		$out .= "data-tooltip='{$children->title}'>\n";
-		$out .= "<div class='parallax m-1'>
-		     <div class='parallax-top-left'></div>
-		     <div class='parallax-top-right'></div>
-		     <div class='parallax-bottom-left'></div>
-		     <div class='parallax-bottom-right'></div>
-		     <div class='parallax-content'>
-		     <div class='parallax-front'></div>
-		     <div class='parallax-back text-center'>";
-			$out .="<img src='{$children->images->first->url}' class='img-responsive centered rounded d-block p-1' alt='{$children->name}'>";
-		$out .="</div>
-	        </div>
-	      </div>
-	    </a>\n";
-	}
+
+				$medium = $children->images->first->width(420);
+				$width = $medium->width;
+				$height = $medium->height;
+				$url = $medium->url;
+				$alt = $children->name;
+
+	$out .= "\n<a class='tooltip column col-4 col-sm-12 col-md-6' "; 
+	$out .= "href='{$children->url}' ";
+	$out .= "data-tooltip='{$children->title}'>\n";
+	$out .= "<div class='parallax m-1'>
+			<div class='parallax-top-left'></div>
+			<div class='parallax-top-right'></div>
+			<div class='parallax-bottom-left'></div>
+			<div class='parallax-bottom-right'></div>
+			<div class='parallax-content'>
+			<div class='parallax-front'></div>
+			<div class='parallax-back text-center'>";
+	$out .="<img src='{$url}' class='img-responsive centered d-block p-1'  width='{$width}' height='{$height}' alt='{$alt}'>";
+	$out .="</div>
+				</div>
+				</div>
+			</a>\n";
+		}
 } 
 	return $out;
 }
