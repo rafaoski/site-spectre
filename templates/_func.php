@@ -588,9 +588,13 @@ $check = pages()->get('/options/');
 $out .= "<div class='column col-sm-12 col-md-5 col-lg-6 col-3'>";
 	
 	if(count($key->images)) {
-		$img_url = $key->images->first->url;
+		$medium = $key->images->first->width(420);
+		$width = $medium->width;
+		$height = $medium->height;
+		$url = $medium->url;
+		$alt = $key->name;
 			$out .= "<a href='{$key->url}'>";
-			$out .= "<img src='{$img_url}' class='img-responsive centered mt-2' alt='{$key->name}' >";
+			$out .= "<img class='img-responsive centered mt-2' src='{$url}' width='{$width}' height='{$height}' alt='{$alt}'>";
 			$out .= "</a>";
 		}
 
