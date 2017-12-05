@@ -46,18 +46,17 @@ if(page()->check_1) {
   $p->save();
 }
 
+echo 
+"<h2>$l_yourmessage</h2>
+<h3>$l_name: $m_name</h3>
+<h4>$l_email:  $m_from</h4>
+<p>$l_message: $m_message</p>";
+
 } else {
     echo '<h1>' . __('Fill in the field correctly') . '</h1>';
 }
-?>
-<h2><?=$l_yourmessage?></h2>
-<h3><?= "$l_name: $m_name"?></h3>
-<h4><?= "$l_email:  $m_from"?></h4>
-<p><?= "$l_message: $m_message"?></p>
-
-<?php
+// IF CSRF TOKEN NOT FOUND
 } else {
-    // CSRF NOT FOUND
     echo '<h3>' . __("Something is wrong so try again ") .
          "<a href='./' class='btn btn-lg text-error m-2'>Refresh <i class='icon icon-refresh'></i></a></h3>";
 }
