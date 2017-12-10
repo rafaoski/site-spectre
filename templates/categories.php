@@ -30,7 +30,12 @@ echo "<a class='p-2 m-2' href='{$category->url}'>
 
 <div id='sidebar' pw-append>
     <?php 
-        $list = pages()->get(1)->children("limit=12");
-        echo listChild( $list, __('Show More Pages'), 'icon icon-share' );
+        $list = pages()->get('/blog/')->children("limit=12");
+        echo listChild( $list, __('Show More Posts'), 'icon icon-apps' );
+
+        echo '<br>';
+
+        $list = pages()->get('/authors/')->children("limit=12");
+        echo listChild( $list, __('Authors'), 'icon icon-people' );
     ?>
 </div>

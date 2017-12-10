@@ -11,7 +11,7 @@ if($input->post->submit) :
 
 if($session->CSRF->hasValidToken()) {   
 
-$mail = page()->email ? page()->email : 'user@gmail.com';
+$mail = page()->email_1 ? page()->email_1 : 'user@gmail.com';
 
 $m_name = $sanitizer->text($input->post->name);
 $m_from = $sanitizer->email($input->post->email);

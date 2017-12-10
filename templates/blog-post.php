@@ -9,7 +9,7 @@
 
 <?php if(count(page()->images)): ?>
     <a href="<?=page()->images->first->url?>">
-        <img class='centered mt-2 mb-2 img-responsive' src="<?=page()->images->first->url?>" alt="<?=page()->name?>">
+        <img class='centered mt-2 mb-2 img-responsive px-2rem' src="<?=page()->images->first->url?>" alt="<?=page()->name?>">
     </a>
 <?php endif; ?>
 
@@ -38,6 +38,15 @@
 echo toAny();
 // Page Body
 echo page()->body;
+
+// Youtobe Video
+ if(page()->txt_1): ?>
+<div class="home-youtobe px-2rem">
+    <?= lazyYoutobe('txt_1')?>
+</div>
+<br>
+<?php endif;
+
 // PAGE COMMENTS
 if(page()->check_1 == false && $options->check_1 == false) echo commentsPagination();
 ?>
@@ -46,7 +55,6 @@ if(page()->check_1 == false && $options->check_1 == false) echo commentsPaginati
 
 <div id='sidebar' pw-append>
 <?php 
-    echo '<hr>';
         $list = pages()->get('/categories/')->children("limit=12");
         echo listChild( $list, __('Categories'), 'icon icon-apps' );
     echo '<br>';

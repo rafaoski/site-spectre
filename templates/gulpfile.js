@@ -59,11 +59,18 @@ gulp.task('copy-css', function() {
         .pipe(gulp.dest('./assets/css'));
 });
 
+gulp.task('copy-js', function() {
+  gulp.src([
+          './node_modules/lazyload/lazyload.min.js'
+      ])
+      .pipe(gulp.dest('./assets/js'));
+});
+
 // COPY ASSETS
-gulp.task('copy', ['copy-fonts','copy-css']);
+gulp.task('copy', ['copy-fonts','copy-css','copy-js']);
 
 // WATCH CHANGES
 gulp.task('watch', ['serve','sass']);
 
 // FINISH BUILDED PACKAGES
-gulp.task('build', ['sass','copy-fonts','copy-css']);
+gulp.task('build', ['sass','copy']);

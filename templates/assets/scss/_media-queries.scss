@@ -1,0 +1,49 @@
+// SEE the defolt sizes of the spectre from the file _variables.scss
+  // $size-xs: 480px !default;
+  // $size-sm: 600px !default;
+  // $size-md: 840px !default;
+  // $size-lg: 960px !default;
+  // $size-xl: 1280px !default;
+  // $size-2x: 1440px !default;
+
+// MAXIMUM 600px
+@mixin tablet {
+  @media (max-width: $size-sm) {
+    @content;
+  }
+}
+
+// MINIMUM 601px AND MAXIMUM 1280px
+@mixin desktop {
+  @media (min-width: $size-sm + 1px) and (max-width: $size-xl) {
+    @content;
+  }
+}
+
+// MINIMUM 1281px
+@mixin large {
+  @media (min-width: $size-xl + 1px) {
+    @content;
+  }
+}
+
+// HOW TO USAGE -- See the 2 line in the _custom.scss file 
+// and uncomment the example underneath and resize the browser window to see the effect
+
+// @include tablet {
+//     body {
+//       background-color: $black;
+//     }
+//   }
+
+//   @include desktop {
+//     body {
+//       background-color: $red;
+//     }
+//   }
+
+//   @include large {
+//     body {
+//       background-color: $orange;
+//     }
+//   }

@@ -91,20 +91,21 @@ $def_lang = 'en' // SET DEFAULT LANGUAGE;
         </div>
 
 <?php if(!$dis_sid): ?>
-            <div id='sidebar' class='content-sidebar column col-md-12 col-3 centered'>
-
-                <?php if(page()->images->first && $page->parent->name != 'blog'):?>
+    <div id='sidebar' class='content-sidebar column col-md-12 col-3 centered'>
+        <?php
+            // HIDE IMAGES IN THIS PAGE PARENT
+            $hide_p = ['blog','portfolios'];
+                if(page()->images->first && in_array($page->parent->name, $hide_p) == false ):?>
                     <a class='text-center' href='<?=page()->images->first->url?>'>
-                        <img class='img-responsive centered d-block p-1' src="<?=page()->images->first->url?>" alt="<?=page()->name?>">
+                        <img class='img-responsive centered d-block p-1 lazyload' data-src="<?=page()->images->first->url?>" alt="<?=page()->name?>">
                     </a>
                 <?php endif;
-        
+            // IF ENABLE GLOBAL SIDEBAR
                 if($gl_sid) echo $options->sidebar;
-
+            // IF PAGE SIDEBAR
                 if(page()->sidebar) echo page()->sidebar;
-                ?>
-
-            </div>
+        ?>
+    </div><!-- /#sidebar -->
 <?php endif; ?>
 
     </div><!-- /#content -->
@@ -133,7 +134,13 @@ $def_lang = 'en' // SET DEFAULT LANGUAGE;
 // GOGLE ANALYTICS CODE 
  // echo gAnalitycs('XAA120');
 ?>
-<!-- <script src="<?php // echo $templ_url?>assets/js/custom.js"></script> -->
+<script src="<?php  echo $templ_url?>assets/js/lazyload.min.js" defer></script>
+<script>
+    window.addEventListener("load", function(){
+        lazyload();
+    });
+</script>
+<script src="<?php echo $templ_url?>assets/js/custom.js" defer></script>
 <!-- COOKIE BAR FROM https://cookie-bar.eu/ -->
 <script  type="text/javascript" src="https://cdn.jsdelivr.net/npm/cookie-bar/cookiebar-latest.min.js?showNoConsent=1&hideDetailsBtn=1" defer></script>
 <pw-region id="bottom-region"></pw-region>

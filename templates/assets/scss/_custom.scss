@@ -1,3 +1,13 @@
+// CHANGE CONCENT WIDTH
+@include large {
+    .content-main.grid-xl {
+        max-width: 85%;
+    }
+    .px-2rem {
+        padding: 0 2rem;
+    }
+  }
+  
 // SOCIAL MENU
 .social-right {
     ul {

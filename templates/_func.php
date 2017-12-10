@@ -351,7 +351,7 @@ function parallaxImage($items) {
 			<div class='parallax-content'>
 			<div class='parallax-front'></div>
 			<div class='parallax-back text-center'>";
-	$out .="<img src='{$url}' class='img-responsive centered d-block p-1'  width='{$width}' height='{$height}' alt='{$alt}'>";
+	$out .="<img data-src='{$url}' class='img-responsive centered d-block p-1 lazyload'  width='{$width}' height='{$height}' alt='{$alt}'>";
 	$out .="</div>
 				</div>
 				</div>
@@ -406,7 +406,7 @@ if(count($item->images)) {
 		<div class='parallax-content circle'>
 		<div class='parallax-front'></div>
 		<div class='parallax-back text-center'>
-			<img class='img-responsive circle' src='{$url}' width='{$width}' height='{$height}' alt='{$alt}'>
+			<img data-src='{$url}' class='img-responsive circle lazyload' width='{$width}' height='{$height}' alt='{$alt}'>
 		</div> 
 		</div>
 		</div>
@@ -468,7 +468,7 @@ $out .= "<div class='card-image'>
 				<div class='parallax-content circle'>
 				<div class='parallax-front'></div>
 				<div class='parallax-back text-center'>
-					<img class='img-responsive' src='{$url}' width='{$width}' height='{$height}' alt='{$alt}'>
+					<img data-src='{$url}' class='img-responsive lazyload'  width='{$width}' height='{$height}' alt='{$alt}'>
 				</div> 
 				</div>
 				</div>
@@ -601,7 +601,7 @@ $out .= "<div class='column col-sm-12 col-md-5 col-lg-6 col-3'>";
 		$url = $medium->url;
 		$alt = $key->name;
 			$out .= "<a href='{$key->url}'>";
-			$out .= "<img class='img-responsive centered mt-2' src='{$url}' width='{$width}' height='{$height}' alt='{$alt}'>";
+			$out .= "<img data-src='{$url}' class='img-responsive centered mt-2 lazyload' width='{$width}' height='{$height}' alt='{$alt}'>";
 			$out .= "</a>";
 		}
 
@@ -653,7 +653,21 @@ function listChild( $items, $heading = '', $icon = '' ) {
             $out .= "</li>\n</ul>";
             return $out;
            }
-        }
+		}
+		
+/**
+ * @param string $field Page Field Name to use youtube embed code
+ */	
+function lazyYoutobe($field) {
+	if(strpos(page()->$field, 'youtu') !== false )  { 
+		$vid = substr(page()->$field,17);
+		// IF EMBED IFRAME // $vid_link = "https://www.youtube.com/embed/{$vid}"; 
+			return"
+				<div class='youtube video-responsive video-responsive-16-9' data-embed='{$vid}'>
+						<div class='play-button'></div>
+				</div>";
+		}
+	}
 
 // PW DEBUG => USAGE => echo pwDebug()
 function pwDebug() {
@@ -712,7 +726,8 @@ ga('send', 'pageview');
             // GET ID ALL PAGES TO TRASH
             $arr_p = [
 				'1034','1035','1038','1039','1041','1042','1054',
-				'1060','1061','1062'
+				'1060','1061','1062','1065','1066','1067','1068','1069',
+				'1070','1071'
             ];
         
                 foreach ($arr_p as $key) {
