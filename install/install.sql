@@ -1,4 +1,4 @@
-# --- WireDatabaseBackup {"time":"2017-12-10 19:51:54","user":"","dbName":"spectre","description":"","tables":[],"excludeTables":["pages_drafts","pages_roles","permissions","roles","roles_permissions","users","users_roles","user","role","permission"],"excludeCreateTables":[],"excludeExportTables":["field_roles","field_permissions","field_email","field_pass","caches","session_login_throttle","page_path_history"]}
+# --- WireDatabaseBackup {"time":"2018-02-22 14:58:04","user":"","dbName":"spectre","description":"","tables":[],"excludeTables":["pages_drafts","pages_roles","permissions","roles","roles_permissions","users","users_roles","user","role","permission"],"excludeCreateTables":[],"excludeExportTables":["field_roles","field_permissions","field_email","field_pass","caches","session_login_throttle","page_path_history"]}
 
 DROP TABLE IF EXISTS `caches`;
 CREATE TABLE `caches` (
@@ -181,14 +181,16 @@ CREATE TABLE `field_favicon` (
   `description` text NOT NULL,
   `modified` datetime DEFAULT NULL,
   `created` datetime DEFAULT NULL,
+  `filedata` mediumtext,
   PRIMARY KEY (`pages_id`,`sort`),
   KEY `data` (`data`),
   KEY `modified` (`modified`),
   KEY `created` (`created`),
-  FULLTEXT KEY `description` (`description`)
+  FULLTEXT KEY `description` (`description`),
+  FULLTEXT KEY `filedata` (`filedata`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-INSERT INTO `field_favicon` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`) VALUES('1026', 'favicon.png', '0', '', '2017-11-21 09:53:48', '2017-11-21 09:53:48');
+INSERT INTO `field_favicon` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`, `filedata`) VALUES('1026', 'favicon.png', '0', '', '2017-11-21 09:53:48', '2017-11-21 09:53:48', NULL);
 
 DROP TABLE IF EXISTS `field_fieldset_tab_1`;
 CREATE TABLE `field_fieldset_tab_1` (
@@ -229,29 +231,31 @@ CREATE TABLE `field_images` (
   `description` text NOT NULL,
   `modified` datetime DEFAULT NULL,
   `created` datetime DEFAULT NULL,
+  `filedata` mediumtext,
   PRIMARY KEY (`pages_id`,`sort`),
   KEY `data` (`data`),
   KEY `modified` (`modified`),
   KEY `created` (`created`),
-  FULLTEXT KEY `description` (`description`)
+  FULLTEXT KEY `description` (`description`),
+  FULLTEXT KEY `filedata` (`filedata`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`) VALUES('1034', 'season.jpg', '0', '', '2017-12-10 17:08:13', '2017-12-10 17:08:13');
-INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`) VALUES('1061', 'rafaoski.png', '0', '', '2017-11-28 18:35:57', '2017-11-28 18:35:57');
-INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`) VALUES('1065', 'fantasy.jpg', '0', '', '2017-12-10 16:51:49', '2017-12-10 16:51:49');
-INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`) VALUES('1038', 'box.jpg', '0', '', '2017-12-10 16:52:34', '2017-12-10 16:52:34');
-INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`) VALUES('1039', 'super-car.jpg', '0', '', '2017-12-10 16:52:55', '2017-12-10 16:52:55');
-INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`) VALUES('1066', 'umbrella.jpg', '0', '', '2017-12-10 16:53:34', '2017-12-10 16:53:34');
-INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`) VALUES('1068', 'hut.jpg', '0', '', '2017-12-10 16:54:34', '2017-12-10 16:54:34');
-INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`) VALUES('1069', 'time.jpg', '0', '', '2017-12-10 16:54:59', '2017-12-10 16:54:59');
-INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`) VALUES('1070', 'christmas-next.jpg', '0', '', '2017-12-10 16:55:23', '2017-12-10 16:55:23');
-INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`) VALUES('1016', 'musician.jpg', '0', '', '2017-12-10 16:58:27', '2017-12-10 16:58:27');
-INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`) VALUES('1035', 'winter.jpg', '0', '', '2017-12-10 17:08:29', '2017-12-10 17:08:29');
-INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`) VALUES('1071', 'time.jpg', '0', '', '2017-12-10 17:10:00', '2017-12-10 17:10:00');
-INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`) VALUES('1018', 'sitemap-1.jpg', '0', '', '2017-12-10 17:13:29', '2017-12-10 17:13:29');
-INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`) VALUES('1021', 'contact-us.jpg', '0', '', '2017-12-10 17:13:55', '2017-12-10 17:13:55');
-INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`) VALUES('1037', 'paint.jpg', '0', '', '2017-12-10 18:47:45', '2017-12-10 18:47:45');
-INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`) VALUES('1064', 'girl.jpg', '0', '', '2017-12-10 18:50:02', '2017-12-10 18:50:02');
+INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`, `filedata`) VALUES('1034', 'season.jpg', '0', '', '2017-12-10 17:08:13', '2017-12-10 17:08:13', NULL);
+INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`, `filedata`) VALUES('1061', 'rafaoski.png', '0', '', '2017-11-28 18:35:57', '2017-11-28 18:35:57', NULL);
+INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`, `filedata`) VALUES('1065', 'fantasy.jpg', '0', '', '2017-12-10 16:51:49', '2017-12-10 16:51:49', NULL);
+INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`, `filedata`) VALUES('1038', 'box.jpg', '0', '', '2017-12-10 16:52:34', '2017-12-10 16:52:34', NULL);
+INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`, `filedata`) VALUES('1039', 'super-car.jpg', '0', '', '2017-12-10 16:52:55', '2017-12-10 16:52:55', NULL);
+INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`, `filedata`) VALUES('1066', 'umbrella.jpg', '0', '', '2017-12-10 16:53:34', '2017-12-10 16:53:34', NULL);
+INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`, `filedata`) VALUES('1068', 'hut.jpg', '0', '', '2017-12-10 16:54:34', '2017-12-10 16:54:34', NULL);
+INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`, `filedata`) VALUES('1069', 'time.jpg', '0', '', '2017-12-10 16:54:59', '2017-12-10 16:54:59', NULL);
+INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`, `filedata`) VALUES('1070', 'christmas-next.jpg', '0', '', '2017-12-10 16:55:23', '2017-12-10 16:55:23', NULL);
+INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`, `filedata`) VALUES('1016', 'musician.jpg', '0', '', '2017-12-10 16:58:27', '2017-12-10 16:58:27', NULL);
+INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`, `filedata`) VALUES('1035', 'winter.jpg', '0', '', '2017-12-10 17:08:29', '2017-12-10 17:08:29', NULL);
+INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`, `filedata`) VALUES('1071', 'time.jpg', '0', '', '2017-12-10 17:10:00', '2017-12-10 17:10:00', NULL);
+INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`, `filedata`) VALUES('1018', 'sitemap-1.jpg', '0', '', '2017-12-10 17:13:29', '2017-12-10 17:13:29', NULL);
+INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`, `filedata`) VALUES('1021', 'contact-us.jpg', '0', '', '2017-12-10 17:13:55', '2017-12-10 17:13:55', NULL);
+INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`, `filedata`) VALUES('1037', 'paint.jpg', '0', '', '2017-12-10 18:47:45', '2017-12-10 18:47:45', NULL);
+INSERT INTO `field_images` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`, `filedata`) VALUES('1064', 'girl.jpg', '0', '', '2017-12-10 18:50:02', '2017-12-10 18:50:02', NULL);
 
 DROP TABLE IF EXISTS `field_logo`;
 CREATE TABLE `field_logo` (
@@ -261,14 +265,16 @@ CREATE TABLE `field_logo` (
   `description` text NOT NULL,
   `modified` datetime DEFAULT NULL,
   `created` datetime DEFAULT NULL,
+  `filedata` mediumtext,
   PRIMARY KEY (`pages_id`,`sort`),
   KEY `data` (`data`),
   KEY `modified` (`modified`),
   KEY `created` (`created`),
-  FULLTEXT KEY `description` (`description`)
+  FULLTEXT KEY `description` (`description`),
+  FULLTEXT KEY `filedata` (`filedata`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-INSERT INTO `field_logo` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`) VALUES('1026', 'logo.png', '0', '', '2017-11-21 09:53:48', '2017-11-21 09:53:48');
+INSERT INTO `field_logo` (`pages_id`, `data`, `sort`, `description`, `modified`, `created`, `filedata`) VALUES('1026', 'logo.png', '0', '', '2017-11-21 09:53:48', '2017-11-21 09:53:48', NULL);
 
 DROP TABLE IF EXISTS `field_pass`;
 CREATE TABLE `field_pass` (
@@ -677,10 +683,10 @@ INSERT INTO `fields` (`id`, `type`, `name`, `flags`, `label`, `data`) VALUES('97
 INSERT INTO `fields` (`id`, `type`, `name`, `flags`, `label`, `data`) VALUES('98', 'FieldtypeTextarea', 'headline', '0', 'Headline', '{\"textformatters\":[\"TextformatterEntities\"],\"inputfieldClass\":\"InputfieldTextarea\",\"contentType\":0,\"collapsed\":0,\"minlength\":0,\"maxlength\":0,\"showCount\":0,\"rows\":3,\"tags\":\"-seo\",\"icon\":\"circle-o-notch\",\"themeBorder\":\"none\",\"columnWidth\":40}');
 INSERT INTO `fields` (`id`, `type`, `name`, `flags`, `label`, `data`) VALUES('99', 'FieldtypeTextarea', 'summary', '0', 'Summary', '{\"textformatters\":[\"TextformatterEntities\"],\"inputfieldClass\":\"InputfieldTextarea\",\"contentType\":0,\"collapsed\":0,\"minlength\":0,\"maxlength\":0,\"showCount\":0,\"rows\":3,\"tags\":\"-seo\",\"icon\":\"circle-o\",\"themeBorder\":\"none\",\"columnWidth\":60}');
 INSERT INTO `fields` (`id`, `type`, `name`, `flags`, `label`, `data`) VALUES('100', 'FieldtypeTextarea', 'sidebar', '0', 'Sidebar', '{\"minlength\":0,\"maxlength\":2048,\"showCount\":0,\"size\":0,\"inputfieldClass\":\"InputfieldCKEditor\",\"contentType\":0,\"collapsed\":0,\"rows\":5,\"toolbar\":\"Format, Styles, -, Bold, Italic, -, RemoveFormat\\nNumberedList, BulletedList, -, Blockquote\\nPWLink, Unlink, Anchor\\nPWImage, Table, HorizontalRule, SpecialChar\\nPasteText, PasteFromWord\\nScayt, -, Sourcedialog\",\"inlineMode\":0,\"useACF\":1,\"usePurifier\":1,\"formatTags\":\"p;h1;h2;h3;h4;h5;h6;pre;address\",\"extraPlugins\":[\"pwimage\",\"pwlink\",\"sourcedialog\"],\"removePlugins\":\"image,magicline\",\"icon\":\"tasks\",\"tags\":\"-text\"}');
-INSERT INTO `fields` (`id`, `type`, `name`, `flags`, `label`, `data`) VALUES('101', 'FieldtypeImage', 'images', '0', 'Images', '{\"fileSchema\":2,\"extensions\":\"gif jpg jpeg png\",\"maxFiles\":0,\"outputFormat\":0,\"defaultValuePage\":0,\"useTags\":0,\"inputfieldClass\":\"InputfieldImage\",\"collapsed\":0,\"descriptionRows\":1,\"gridMode\":\"grid\",\"resizeServer\":0,\"clientQuality\":90,\"maxReject\":0,\"dimensionsByAspectRatio\":0,\"tags\":\"-image\",\"icon\":\"picture-o\"}');
+INSERT INTO `fields` (`id`, `type`, `name`, `flags`, `label`, `data`) VALUES('101', 'FieldtypeImage', 'images', '0', 'Images', '{\"fileSchema\":6,\"extensions\":\"gif jpg jpeg png\",\"maxFiles\":0,\"outputFormat\":0,\"defaultValuePage\":0,\"useTags\":0,\"inputfieldClass\":\"InputfieldImage\",\"descriptionRows\":1,\"gridMode\":\"grid\",\"resizeServer\":0,\"clientQuality\":90,\"maxReject\":0,\"dimensionsByAspectRatio\":0,\"tags\":\"-image\",\"icon\":\"picture-o\"}');
 INSERT INTO `fields` (`id`, `type`, `name`, `flags`, `label`, `data`) VALUES('102', 'FieldtypeModule', 'admin_theme', '8', 'Admin Theme', '{\"moduleTypes\":[\"AdminTheme\"],\"labelField\":\"title\",\"inputfieldClass\":\"InputfieldRadios\"}');
-INSERT INTO `fields` (`id`, `type`, `name`, `flags`, `label`, `data`) VALUES('103', 'FieldtypeImage', 'logo', '0', 'Logo', '{\"fileSchema\":2,\"extensions\":\"gif jpg jpeg png\",\"maxFiles\":1,\"outputFormat\":0,\"defaultValuePage\":0,\"useTags\":0,\"inputfieldClass\":\"InputfieldImage\",\"descriptionRows\":1,\"gridMode\":\"grid\",\"resizeServer\":0,\"clientQuality\":90,\"maxReject\":0,\"dimensionsByAspectRatio\":0,\"collapsed\":0,\"tags\":\"-image\",\"icon\":\"ravelry\"}');
-INSERT INTO `fields` (`id`, `type`, `name`, `flags`, `label`, `data`) VALUES('104', 'FieldtypeImage', 'favicon', '0', 'Favicon', '{\"extensions\":\"gif jpg jpeg png\",\"maxFiles\":1,\"outputFormat\":0,\"defaultValuePage\":0,\"useTags\":0,\"inputfieldClass\":\"InputfieldImage\",\"descriptionRows\":1,\"gridMode\":\"grid\",\"resizeServer\":0,\"clientQuality\":90,\"maxReject\":0,\"dimensionsByAspectRatio\":0,\"fileSchema\":2,\"collapsed\":0,\"tags\":\"-image\",\"icon\":\"fire\"}');
+INSERT INTO `fields` (`id`, `type`, `name`, `flags`, `label`, `data`) VALUES('103', 'FieldtypeImage', 'logo', '0', 'Logo', '{\"fileSchema\":6,\"extensions\":\"gif jpg jpeg png\",\"maxFiles\":1,\"outputFormat\":0,\"defaultValuePage\":0,\"useTags\":0,\"inputfieldClass\":\"InputfieldImage\",\"descriptionRows\":1,\"gridMode\":\"grid\",\"resizeServer\":0,\"clientQuality\":90,\"maxReject\":0,\"dimensionsByAspectRatio\":0,\"tags\":\"-image\",\"icon\":\"ravelry\"}');
+INSERT INTO `fields` (`id`, `type`, `name`, `flags`, `label`, `data`) VALUES('104', 'FieldtypeImage', 'favicon', '0', 'Favicon', '{\"extensions\":\"gif jpg jpeg png\",\"maxFiles\":1,\"outputFormat\":0,\"defaultValuePage\":0,\"useTags\":0,\"inputfieldClass\":\"InputfieldImage\",\"descriptionRows\":1,\"gridMode\":\"grid\",\"resizeServer\":0,\"clientQuality\":90,\"maxReject\":0,\"dimensionsByAspectRatio\":0,\"fileSchema\":6,\"tags\":\"-image\",\"icon\":\"fire\"}');
 INSERT INTO `fields` (`id`, `type`, `name`, `flags`, `label`, `data`) VALUES('106', 'FieldtypeText', 'txt_1', '0', 'Text 1', '{\"textformatters\":[\"TextformatterEntities\"],\"collapsed\":0,\"minlength\":0,\"maxlength\":2048,\"showCount\":0,\"size\":0,\"tags\":\"-text\",\"icon\":\"text-height\"}');
 INSERT INTO `fields` (`id`, `type`, `name`, `flags`, `label`, `data`) VALUES('111', 'FieldtypeFieldsetClose', 'fieldset_tab_1_END', '0', 'Close an open fieldset', '{\"description\":\"This field was added automatically to accompany fieldset \'fieldset_tab_1\'.  It should be placed in your template\\/fieldgroup wherever you want the fieldset to end.\",\"openFieldID\":110,\"tags\":\"-fieldset\",\"icon\":\"folder-o\"}');
 INSERT INTO `fields` (`id`, `type`, `name`, `flags`, `label`, `data`) VALUES('110', 'FieldtypeFieldsetTabOpen', 'fieldset_tab_1', '0', 'SEO', '{\"closeFieldID\":111,\"collapsed\":0,\"tags\":\"-fieldset\",\"icon\":\"folder-open-o\"}');
@@ -716,7 +722,7 @@ CREATE TABLE `modules` (
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `class` (`class`)
-) ENGINE=MyISAM AUTO_INCREMENT=190 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=191 DEFAULT CHARSET=utf8;
 
 INSERT INTO `modules` (`id`, `class`, `flags`, `data`, `created`) VALUES('1', 'FieldtypeTextarea', '1', '', '2017-11-10 13:29:05');
 INSERT INTO `modules` (`id`, `class`, `flags`, `data`, `created`) VALUES('2', 'FieldtypeNumber', '0', '', '2017-11-10 13:29:05');
@@ -797,7 +803,7 @@ INSERT INTO `modules` (`id`, `class`, `flags`, `data`, `created`) VALUES('135', 
 INSERT INTO `modules` (`id`, `class`, `flags`, `data`, `created`) VALUES('136', 'ProcessPermission', '1', '{\"showFields\":[\"name\",\"title\"]}', '2017-11-10 13:29:05');
 INSERT INTO `modules` (`id`, `class`, `flags`, `data`, `created`) VALUES('137', 'InputfieldPageListSelectMultiple', '0', '', '2017-11-10 13:29:05');
 INSERT INTO `modules` (`id`, `class`, `flags`, `data`, `created`) VALUES('138', 'ProcessProfile', '1', '{\"profileFields\":[\"pass\",\"email\",\"admin_theme\"]}', '2017-11-10 13:29:05');
-INSERT INTO `modules` (`id`, `class`, `flags`, `data`, `created`) VALUES('139', 'SystemUpdater', '1', '{\"systemVersion\":16,\"coreVersion\":\"3.0.85\"}', '2017-11-10 13:29:05');
+INSERT INTO `modules` (`id`, `class`, `flags`, `data`, `created`) VALUES('139', 'SystemUpdater', '1', '{\"systemVersion\":16,\"coreVersion\":\"3.0.92\"}', '2017-11-10 13:29:05');
 INSERT INTO `modules` (`id`, `class`, `flags`, `data`, `created`) VALUES('148', 'AdminThemeDefault', '10', '{\"colors\":\"classic\"}', '2017-11-10 13:29:05');
 INSERT INTO `modules` (`id`, `class`, `flags`, `data`, `created`) VALUES('149', 'InputfieldSelector', '42', '', '2017-11-10 13:29:05');
 INSERT INTO `modules` (`id`, `class`, `flags`, `data`, `created`) VALUES('150', 'ProcessPageLister', '32', '', '2017-11-10 13:29:05');
@@ -840,10 +846,10 @@ CREATE TABLE `pages` (
   KEY `created` (`created`),
   KEY `status` (`status`),
   KEY `published` (`published`)
-) ENGINE=MyISAM AUTO_INCREMENT=1074 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1075 DEFAULT CHARSET=utf8;
 
 INSERT INTO `pages` (`id`, `parent_id`, `templates_id`, `name`, `status`, `modified`, `modified_users_id`, `created`, `created_users_id`, `published`, `sort`) VALUES('1', '0', '1', 'home', '9', '2017-12-10 19:19:51', '41', '2017-11-10 13:29:05', '2', '2017-11-10 13:29:05', '0');
-INSERT INTO `pages` (`id`, `parent_id`, `templates_id`, `name`, `status`, `modified`, `modified_users_id`, `created`, `created_users_id`, `published`, `sort`) VALUES('2', '1', '2', 'processwire', '1035', '2017-12-10 14:36:45', '40', '2017-11-10 13:29:05', '2', '2017-11-10 13:29:05', '14');
+INSERT INTO `pages` (`id`, `parent_id`, `templates_id`, `name`, `status`, `modified`, `modified_users_id`, `created`, `created_users_id`, `published`, `sort`) VALUES('2', '1', '2', 'processwire', '1035', '2018-02-22 14:53:43', '40', '2017-11-10 13:29:05', '2', '2017-11-10 13:29:05', '14');
 INSERT INTO `pages` (`id`, `parent_id`, `templates_id`, `name`, `status`, `modified`, `modified_users_id`, `created`, `created_users_id`, `published`, `sort`) VALUES('3', '2', '2', 'page', '21', '2017-11-10 13:29:05', '41', '2017-11-10 13:29:05', '2', '2017-11-10 13:29:05', '0');
 INSERT INTO `pages` (`id`, `parent_id`, `templates_id`, `name`, `status`, `modified`, `modified_users_id`, `created`, `created_users_id`, `published`, `sort`) VALUES('6', '3', '2', 'add', '21', '2017-11-10 13:29:43', '40', '2017-11-10 13:29:05', '2', '2017-11-10 13:29:05', '1');
 INSERT INTO `pages` (`id`, `parent_id`, `templates_id`, `name`, `status`, `modified`, `modified_users_id`, `created`, `created_users_id`, `published`, `sort`) VALUES('7', '1', '2', 'trash', '1039', '2017-11-10 13:29:05', '41', '2017-11-10 13:29:05', '2', '2017-11-10 13:29:05', '15');
@@ -866,7 +872,7 @@ INSERT INTO `pages` (`id`, `parent_id`, `templates_id`, `name`, `status`, `modif
 INSERT INTO `pages` (`id`, `parent_id`, `templates_id`, `name`, `status`, `modified`, `modified_users_id`, `created`, `created_users_id`, `published`, `sort`) VALUES('36', '31', '5', 'page-view', '25', '2017-11-10 13:29:05', '41', '2017-11-10 13:29:05', '2', '2017-11-10 13:29:05', '0');
 INSERT INTO `pages` (`id`, `parent_id`, `templates_id`, `name`, `status`, `modified`, `modified_users_id`, `created`, `created_users_id`, `published`, `sort`) VALUES('37', '30', '4', 'guest', '25', '2017-11-10 13:29:05', '41', '2017-11-10 13:29:05', '2', '2017-11-10 13:29:05', '0');
 INSERT INTO `pages` (`id`, `parent_id`, `templates_id`, `name`, `status`, `modified`, `modified_users_id`, `created`, `created_users_id`, `published`, `sort`) VALUES('38', '30', '4', 'superuser', '25', '2017-11-10 13:29:05', '41', '2017-11-10 13:29:05', '2', '2017-11-10 13:29:05', '1');
-INSERT INTO `pages` (`id`, `parent_id`, `templates_id`, `name`, `status`, `modified`, `modified_users_id`, `created`, `created_users_id`, `published`, `sort`) VALUES('41', '29', '3', 'rafaoski', '1', '2017-12-10 14:36:45', '40', '2017-11-10 13:29:05', '2', '2017-11-10 13:29:05', '0');
+INSERT INTO `pages` (`id`, `parent_id`, `templates_id`, `name`, `status`, `modified`, `modified_users_id`, `created`, `created_users_id`, `published`, `sort`) VALUES('41', '29', '3', 'rafaoski', '1', '2018-02-22 14:53:43', '40', '2017-11-10 13:29:05', '2', '2017-11-10 13:29:05', '0');
 INSERT INTO `pages` (`id`, `parent_id`, `templates_id`, `name`, `status`, `modified`, `modified_users_id`, `created`, `created_users_id`, `published`, `sort`) VALUES('40', '29', '3', 'guest', '25', '2017-11-10 13:29:05', '41', '2017-11-10 13:29:05', '2', '2017-11-10 13:29:05', '1');
 INSERT INTO `pages` (`id`, `parent_id`, `templates_id`, `name`, `status`, `modified`, `modified_users_id`, `created`, `created_users_id`, `published`, `sort`) VALUES('50', '31', '5', 'page-sort', '25', '2017-11-10 13:29:05', '41', '2017-11-10 13:29:05', '41', '2017-11-10 13:29:05', '5');
 INSERT INTO `pages` (`id`, `parent_id`, `templates_id`, `name`, `status`, `modified`, `modified_users_id`, `created`, `created_users_id`, `published`, `sort`) VALUES('51', '31', '5', 'page-template', '25', '2017-11-10 13:29:05', '41', '2017-11-10 13:29:05', '41', '2017-11-10 13:29:05', '6');
@@ -890,7 +896,7 @@ INSERT INTO `pages` (`id`, `parent_id`, `templates_id`, `name`, `status`, `modif
 INSERT INTO `pages` (`id`, `parent_id`, `templates_id`, `name`, `status`, `modified`, `modified_users_id`, `created`, `created_users_id`, `published`, `sort`) VALUES('1018', '1', '44', 'sitemap', '1', '2017-12-10 17:13:29', '41', '2017-11-19 15:35:27', '41', '2017-11-19 15:35:39', '8');
 INSERT INTO `pages` (`id`, `parent_id`, `templates_id`, `name`, `status`, `modified`, `modified_users_id`, `created`, `created_users_id`, `published`, `sort`) VALUES('1019', '1', '45', 'search', '1025', '2017-11-19 19:55:01', '41', '2017-11-19 15:40:59', '41', '2017-11-19 15:46:05', '10');
 INSERT INTO `pages` (`id`, `parent_id`, `templates_id`, `name`, `status`, `modified`, `modified_users_id`, `created`, `created_users_id`, `published`, `sort`) VALUES('1021', '1', '46', 'contact', '1', '2017-12-10 17:13:55', '41', '2017-11-19 20:04:56', '41', '2017-11-19 20:05:09', '9');
-INSERT INTO `pages` (`id`, `parent_id`, `templates_id`, `name`, `status`, `modified`, `modified_users_id`, `created`, `created_users_id`, `published`, `sort`) VALUES('1026', '1', '47', 'options', '1025', '2017-11-27 22:03:40', '41', '2017-11-21 09:33:43', '41', '2017-11-21 09:54:29', '11');
+INSERT INTO `pages` (`id`, `parent_id`, `templates_id`, `name`, `status`, `modified`, `modified_users_id`, `created`, `created_users_id`, `published`, `sort`) VALUES('1026', '1', '47', 'options', '1025', '2018-02-22 14:54:28', '41', '2017-11-21 09:33:43', '41', '2017-11-21 09:54:29', '11');
 INSERT INTO `pages` (`id`, `parent_id`, `templates_id`, `name`, `status`, `modified`, `modified_users_id`, `created`, `created_users_id`, `published`, `sort`) VALUES('1034', '1016', '29', 'what', '1', '2017-12-10 19:05:35', '41', '2017-11-22 11:29:51', '41', '2017-11-22 11:30:16', '0');
 INSERT INTO `pages` (`id`, `parent_id`, `templates_id`, `name`, `status`, `modified`, `modified_users_id`, `created`, `created_users_id`, `published`, `sort`) VALUES('1035', '1016', '29', 'background', '1', '2017-12-10 17:08:29', '41', '2017-11-22 11:30:27', '41', '2017-11-22 11:30:30', '1');
 INSERT INTO `pages` (`id`, `parent_id`, `templates_id`, `name`, `status`, `modified`, `modified_users_id`, `created`, `created_users_id`, `published`, `sort`) VALUES('1037', '1', '50', 'blog', '1', '2017-12-10 18:47:45', '41', '2017-11-26 16:22:01', '41', '2017-11-26 16:22:01', '5');
@@ -983,6 +989,7 @@ CREATE TABLE `pages_parents` (
 INSERT INTO `pages_parents` (`pages_id`, `parents_id`) VALUES('2', '1');
 INSERT INTO `pages_parents` (`pages_id`, `parents_id`) VALUES('3', '1');
 INSERT INTO `pages_parents` (`pages_id`, `parents_id`) VALUES('3', '2');
+INSERT INTO `pages_parents` (`pages_id`, `parents_id`) VALUES('7', '1');
 INSERT INTO `pages_parents` (`pages_id`, `parents_id`) VALUES('22', '1');
 INSERT INTO `pages_parents` (`pages_id`, `parents_id`) VALUES('22', '2');
 INSERT INTO `pages_parents` (`pages_id`, `parents_id`) VALUES('28', '1');
@@ -1027,28 +1034,28 @@ CREATE TABLE `templates` (
   KEY `fieldgroups_id` (`fieldgroups_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=62 DEFAULT CHARSET=utf8;
 
-INSERT INTO `templates` (`id`, `name`, `fieldgroups_id`, `flags`, `cache_time`, `data`) VALUES('2', 'admin', '2', '8', '0', '{\"useRoles\":1,\"parentTemplates\":[2],\"allowPageNum\":1,\"redirectLogin\":23,\"slashUrls\":1,\"noGlobal\":1,\"compile\":3,\"modified\":1512473378,\"ns\":\"ProcessWire\"}');
+INSERT INTO `templates` (`id`, `name`, `fieldgroups_id`, `flags`, `cache_time`, `data`) VALUES('2', 'admin', '2', '8', '0', '{\"useRoles\":1,\"parentTemplates\":[2],\"allowPageNum\":1,\"redirectLogin\":23,\"slashUrls\":1,\"noGlobal\":1,\"compile\":3,\"modified\":1512900780,\"ns\":\"ProcessWire\"}');
 INSERT INTO `templates` (`id`, `name`, `fieldgroups_id`, `flags`, `cache_time`, `data`) VALUES('3', 'user', '3', '8', '0', '{\"useRoles\":1,\"noChildren\":1,\"parentTemplates\":[2],\"slashUrls\":1,\"pageClass\":\"User\",\"noGlobal\":1,\"noMove\":1,\"noTrash\":1,\"noSettings\":1,\"noChangeTemplate\":1,\"nameContentTab\":1}');
 INSERT INTO `templates` (`id`, `name`, `fieldgroups_id`, `flags`, `cache_time`, `data`) VALUES('4', 'role', '4', '8', '0', '{\"noChildren\":1,\"parentTemplates\":[2],\"slashUrls\":1,\"pageClass\":\"Role\",\"noGlobal\":1,\"noMove\":1,\"noTrash\":1,\"noSettings\":1,\"noChangeTemplate\":1,\"nameContentTab\":1}');
 INSERT INTO `templates` (`id`, `name`, `fieldgroups_id`, `flags`, `cache_time`, `data`) VALUES('5', 'permission', '5', '8', '0', '{\"noChildren\":1,\"parentTemplates\":[2],\"slashUrls\":1,\"guestSearchable\":1,\"pageClass\":\"Permission\",\"noGlobal\":1,\"noMove\":1,\"noTrash\":1,\"noSettings\":1,\"noChangeTemplate\":1,\"nameContentTab\":1}');
 INSERT INTO `templates` (`id`, `name`, `fieldgroups_id`, `flags`, `cache_time`, `data`) VALUES('1', 'home', '1', '0', '0', '{\"useRoles\":1,\"noParents\":1,\"slashUrls\":1,\"pageLabelField\":\"fa-home title\",\"compile\":3,\"tags\":\"-basic\",\"modified\":1512928589,\"ns\":\"Processwire\",\"roles\":[37]}');
 INSERT INTO `templates` (`id`, `name`, `fieldgroups_id`, `flags`, `cache_time`, `data`) VALUES('29', 'basic-page', '83', '0', '0', '{\"slashUrls\":1,\"pageLabelField\":\"fa-book title\",\"compile\":3,\"tags\":\"-basic\",\"modified\":1512929058,\"ns\":\"Processwire\"}');
-INSERT INTO `templates` (`id`, `name`, `fieldgroups_id`, `flags`, `cache_time`, `data`) VALUES('44', 'sitemap', '98', '0', '0', '{\"noChildren\":1,\"noParents\":-1,\"slashUrls\":1,\"pageLabelField\":\"fa-map-o title\",\"compile\":3,\"tags\":\"-basic\",\"modified\":1512473378,\"ns\":\"Processwire\"}');
-INSERT INTO `templates` (`id`, `name`, `fieldgroups_id`, `flags`, `cache_time`, `data`) VALUES('45', 'search', '99', '0', '0', '{\"noChildren\":1,\"noParents\":-1,\"slashUrls\":1,\"pageLabelField\":\"fa-search-plus title\",\"compile\":3,\"tags\":\"-basic\",\"modified\":1512473378,\"ns\":\"Processwire\"}');
+INSERT INTO `templates` (`id`, `name`, `fieldgroups_id`, `flags`, `cache_time`, `data`) VALUES('44', 'sitemap', '98', '0', '0', '{\"noChildren\":1,\"noParents\":-1,\"slashUrls\":1,\"pageLabelField\":\"fa-map-o title\",\"compile\":3,\"tags\":\"-basic\",\"modified\":1512900780,\"ns\":\"Processwire\"}');
+INSERT INTO `templates` (`id`, `name`, `fieldgroups_id`, `flags`, `cache_time`, `data`) VALUES('45', 'search', '99', '0', '0', '{\"noChildren\":1,\"noParents\":-1,\"slashUrls\":1,\"pageLabelField\":\"fa-search-plus title\",\"compile\":3,\"tags\":\"-basic\",\"modified\":1512900780,\"ns\":\"Processwire\"}');
 INSERT INTO `templates` (`id`, `name`, `fieldgroups_id`, `flags`, `cache_time`, `data`) VALUES('46', 'contact', '100', '0', '0', '{\"noParents\":-1,\"childTemplates\":[53],\"slashUrls\":1,\"pageLabelField\":\"fa-envelope-open-o title\",\"compile\":3,\"tags\":\"-contact\",\"modified\":1512929539,\"ns\":\"Processwire\"}');
 INSERT INTO `templates` (`id`, `name`, `fieldgroups_id`, `flags`, `cache_time`, `data`) VALUES('47', 'options', '101', '0', '0', '{\"noChildren\":1,\"noParents\":-1,\"slashUrls\":1,\"pageLabelField\":\"fa-cogs title\",\"compile\":3,\"tags\":\"-options\",\"modified\":1511893853}');
 INSERT INTO `templates` (`id`, `name`, `fieldgroups_id`, `flags`, `cache_time`, `data`) VALUES('49', 'blog-post', '103', '0', '0', '{\"noChildren\":1,\"parentTemplates\":[50],\"allowPageNum\":1,\"slashUrls\":1,\"pageLabelField\":\"fa-quote-right title\",\"compile\":3,\"tags\":\"-blog\",\"modified\":1512930523,\"ns\":\"Processwire\"}');
-INSERT INTO `templates` (`id`, `name`, `fieldgroups_id`, `flags`, `cache_time`, `data`) VALUES('50', 'blog', '104', '0', '0', '{\"noParents\":-1,\"childTemplates\":[49],\"allowPageNum\":1,\"urlSegments\":[\"rss\"],\"slashUrls\":1,\"pageLabelField\":\"fa-optin-monster title\",\"compile\":3,\"tags\":\"-blog\",\"modified\":1512473378,\"ns\":\"Processwire\"}');
+INSERT INTO `templates` (`id`, `name`, `fieldgroups_id`, `flags`, `cache_time`, `data`) VALUES('50', 'blog', '104', '0', '0', '{\"noParents\":-1,\"childTemplates\":[49],\"allowPageNum\":1,\"urlSegments\":[\"rss\"],\"slashUrls\":1,\"pageLabelField\":\"fa-optin-monster title\",\"compile\":3,\"tags\":\"-blog\",\"modified\":1512900780,\"ns\":\"Processwire\"}');
 INSERT INTO `templates` (`id`, `name`, `fieldgroups_id`, `flags`, `cache_time`, `data`) VALUES('51', 'categories', '105', '0', '0', '{\"noParents\":-1,\"childTemplates\":[52],\"allowPageNum\":1,\"slashUrls\":1,\"pageLabelField\":\"fa-sitemap title\",\"compile\":3,\"tags\":\"-blog\",\"modified\":1512929827,\"ns\":\"Processwire\"}');
-INSERT INTO `templates` (`id`, `name`, `fieldgroups_id`, `flags`, `cache_time`, `data`) VALUES('52', 'category', '106', '0', '0', '{\"noChildren\":1,\"parentTemplates\":[51],\"allowPageNum\":1,\"slashUrls\":1,\"pageLabelField\":\"fa-simplybuilt title\",\"compile\":3,\"tags\":\"-blog\",\"modified\":1512473378,\"ns\":\"Processwire\"}');
+INSERT INTO `templates` (`id`, `name`, `fieldgroups_id`, `flags`, `cache_time`, `data`) VALUES('52', 'category', '106', '0', '0', '{\"noChildren\":1,\"parentTemplates\":[51],\"allowPageNum\":1,\"slashUrls\":1,\"pageLabelField\":\"fa-simplybuilt title\",\"compile\":3,\"tags\":\"-blog\",\"modified\":1512900780,\"ns\":\"Processwire\"}');
 INSERT INTO `templates` (`id`, `name`, `fieldgroups_id`, `flags`, `cache_time`, `data`) VALUES('53', 'contact-item', '107', '0', '0', '{\"parentTemplates\":[46],\"slashUrls\":1,\"pageLabelField\":\"fa-smile-o title\",\"noShortcut\":1,\"compile\":3,\"tags\":\"-contact\",\"modified\":1511811735}');
 INSERT INTO `templates` (`id`, `name`, `fieldgroups_id`, `flags`, `cache_time`, `data`) VALUES('54', 'toggle', '108', '0', '0', '{\"noChildren\":1,\"parentTemplates\":[57],\"slashUrls\":1,\"pageLabelField\":\"fa-toggle-on title\",\"noShortcut\":1,\"compile\":3,\"tags\":\"-options\",\"modified\":1511895400}');
 INSERT INTO `templates` (`id`, `name`, `fieldgroups_id`, `flags`, `cache_time`, `data`) VALUES('58', 'author', '112', '0', '0', '{\"noChildren\":1,\"parentTemplates\":[59],\"allowPageNum\":1,\"slashUrls\":1,\"pageLabelField\":\"fa-user-secret title\",\"compile\":3,\"tags\":\"-blog\",\"modified\":1512473378,\"ns\":\"Processwire\"}');
 INSERT INTO `templates` (`id`, `name`, `fieldgroups_id`, `flags`, `cache_time`, `data`) VALUES('57', 'options-page', '111', '0', '0', '{\"noParents\":-1,\"childTemplates\":[54],\"slashUrls\":1,\"pageLabelField\":\"fa-cog title\",\"compile\":3,\"tags\":\"-options\",\"modified\":1511807079}');
-INSERT INTO `templates` (`id`, `name`, `fieldgroups_id`, `flags`, `cache_time`, `data`) VALUES('59', 'authors', '113', '0', '0', '{\"noParents\":-1,\"childTemplates\":[58],\"allowPageNum\":1,\"slashUrls\":1,\"pageLabelField\":\"fa-users title\",\"compile\":3,\"tags\":\"-blog\",\"modified\":1512473378,\"ns\":\"Processwire\"}');
+INSERT INTO `templates` (`id`, `name`, `fieldgroups_id`, `flags`, `cache_time`, `data`) VALUES('59', 'authors', '113', '0', '0', '{\"noParents\":-1,\"childTemplates\":[58],\"allowPageNum\":1,\"slashUrls\":1,\"pageLabelField\":\"fa-users title\",\"compile\":3,\"tags\":\"-blog\",\"modified\":1512900780,\"ns\":\"Processwire\"}');
 INSERT INTO `templates` (`id`, `name`, `fieldgroups_id`, `flags`, `cache_time`, `data`) VALUES('60', 'portfolio', '114', '0', '0', '{\"noChildren\":1,\"parentTemplates\":[61],\"slashUrls\":1,\"pageLabelField\":\"fa-paw title\",\"compile\":3,\"tags\":\"-portfolio\",\"modified\":1512931379,\"ns\":\"Processwire\"}');
 INSERT INTO `templates` (`id`, `name`, `fieldgroups_id`, `flags`, `cache_time`, `data`) VALUES('61', 'portfolios', '115', '0', '0', '{\"noParents\":-1,\"childTemplates\":[60],\"allowPageNum\":1,\"slashUrls\":1,\"pageLabelField\":\"fa-th title\",\"compile\":3,\"tags\":\"-portfolio\",\"modified\":1512930744,\"ns\":\"Processwire\"}');
 
 UPDATE pages SET created_users_id=41, modified_users_id=41, created=NOW(), modified=NOW();
 
-# --- /WireDatabaseBackup {"numTables":31,"numCreateTables":37,"numInserts":626,"numSeconds":0}
+# --- /WireDatabaseBackup {"numTables":31,"numCreateTables":37,"numInserts":627,"numSeconds":0}

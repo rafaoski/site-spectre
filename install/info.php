@@ -1,6 +1,6 @@
 <?php if(!defined("PROCESSWIRE_INSTALL")) die();
 $info = array(
-	'title' => "Site Profile for Processwire 3x using Framework Spectre.css", 
+	'title' => "Basic Starter Profile Using CSS GRID, FLEX, GRIDLEX", 
 	'summary' => "", 
 	'screenshot' => "home-compressor.png"
 	);
