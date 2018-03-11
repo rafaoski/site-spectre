@@ -199,9 +199,9 @@ function multLang($def_lang, $options) {
 	$sub_menu = '';
 
 // CHECK IF LANGUAGES EXIST && $options set to 'html-lang'
-	if(count(page()->getLanguages()) == 0 && $options == 'html-lang') return $def_lang;
+	if(!page()->getLanguages() && $options == 'html-lang') return $def_lang;
 // CHECK IF LANGUAGES EXIST
-	if(count(page()->getLanguages()) == 0) return '';
+	if(!page()->getLanguages()) return '';
 
 	foreach(page()->languages() as $language) {
 		 
